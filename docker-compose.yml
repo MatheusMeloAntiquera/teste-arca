@@ -1,0 +1,38 @@
+version: "3.5"
+
+services:
+  php:
+    container_name: "teste.arca.php"
+    build: docker/php
+    volumes:
+      - ./app:/var/www/html
+    networks:
+      - default-network
+
+  nginx:
+    container_name: "teste.arca.nginx"
+    build: docker/nginx
+    volumes:
+      - ./app:/var/www/html
+    ports:
+      - "80:80"
+    networks:
+      - default-network
+
+  database:
+    container_name: "teste.arca.database"
+    image: mysql:8
+    volumes:
+      - /.dbdata:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: teste-arca
+    networks:
+      - default-network
+
+networks:
+  default-network:
+    driver: "bridge"
