@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Business Finder{% endblock %}
+
+{% block body %}
+    <h1>Business Finder</h1>
+    <h4>Results for "{{ search }}"</h4><a class="btn" href="{{ path('homepage') }}">New Search</a>
+        <ul class="collection">
+            {% for business in businesses %}
+                <li class="collection-item avatar">
+                    <a href="{{ path('show_business', {'id': business.id}) }}">
+                        <i class="material-icons circle">local_pizza</i>
+                        <span class="title">{{ business.title }}</span>
+                        <p>in {{ business.category }}</br></p>
+                    </a>
+                </li>
+            {% else %}
+                
+            {% endfor %}
+        </ul>
+    
+
+{% endblock %}

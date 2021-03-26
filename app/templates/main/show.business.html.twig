@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Business Finder{% endblock %}
+
+{% block body %}
+	<h3>{{ business.title }}</h3><p>in {{ business.category }}</p>
+    <hr>
+    <h4>About</h4>
+    <p>{{ business.description }}</p>
+    <p>Address: {{ business.address }}, {{ business.city }} - {{ business.state }}, {{ business.zipcode }}</p>
+    <p>Phone: {{ business.phone }}</p>
+    <a class="btn" href="{{ path('homepage') }}">New Search</a>
+{% endblock %}
+
